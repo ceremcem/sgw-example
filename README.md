@@ -1,10 +1,10 @@
 # aeCAD Example Project 
 
-This is an example project for aeCAD: https://aktos.io/aecad 
+This is an example project for [aeCAD](https://aktos.io/aecad).
 
 # Usage 
 
-This folder has to be zipped before uploading the application. You can:
+This folder has to be zipped before uploading to the application as a "project file". You can:
 
 1. Either download this project directly [from Github as "zip"](https://github.com/ceremcem/sgw-example/archive/master.zip).
 2. Or zip this faolder without root folder: 
