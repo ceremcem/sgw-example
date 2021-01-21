@@ -18,6 +18,10 @@ add-class class CAP_thd extends PinArray
             border:
                 dia: 8mm
 
+add-class class CAP_thd_air extends CAP_thd
+    (data, overrides) ->
+        super data, overrides `based-on` do
+            border: null
 
 add-class class Buzzer extends CAP_thd
     (data, overrides) ->

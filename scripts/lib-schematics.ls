@@ -25,14 +25,31 @@ power-parasitic = (value) ->
 
 power = (args) ->
     vin = args?.vin or '24V'
+    # Redundant input capacitor:
+    # Add extra, through hole capacitor
+    unless args?ric
+        ric =
+            bom: {}
+            a: ""
+            c: ""
+    else
+        ric =
+            bom:
+                "CAP_thd_air":
+                    "_": "c12"
+            a: "c12.a"
+            c: "c12.c"
+
+
     (value) ->
         # Power Layer
         # Input: 9-30V, Output: 5V and 3.3V
         iface: 'vff, vfs, 5v, 3v3, gnd'
-        bom:
+        bom: {
             'LM2576':
                 "5V": 'C1'
-            'LM1117': 'C2'
+            'LM1117':
+                "3.3V": 'C2'
             TestBoundary1206: "R1, R2"
             'C1206':
                 "100uF,>#{math.evaluate "#{vin}*1.5"}": 'C13'
@@ -44,11 +61,12 @@ power = (args) ->
             'DO214AC':
                 '1N5822': 'D14, D13, D15'
             parasitic: "C3"
+            } `aea.merge` ric.bom
         netlist:
             # Trace_id: "list, of, connected, pads"
-            1: "C1.vin, vfs, C13.a"
+            1: "C1.vin, vfs, C13.a #{ric.a}"
             gnd: """
-                C13.c C1.gnd C1.onoff
+                C13.c #{ric.c} C1.gnd C1.onoff
                 D15.a C10.c C2.gnd D14.a C11.c
                 C3.c
                 """
@@ -163,7 +181,7 @@ debounce_switch = (value) ->
     bom:
         SMD1206:
             "10K": "R1"
-            "330": "R2"
+            "330ohm": "R2"
         C1206:
             "100nF": "C1"
 

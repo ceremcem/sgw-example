@@ -11,10 +11,10 @@ add-class class Trimpot_Bourns_3006P extends Footprint
     1 ~~~~~~ 3
         ^--2
     '''
-    @rev_Trimpot_Bourns_3006P = 1       # <- Use @rev_{CLASS_NAME} to upgrade the components in place.
+    @rev_Trimpot_Bourns_3006P = 2       # <- Use @rev_{CLASS_NAME} to upgrade the components in place.
 
     create: (data) ->
-        dia = 1.2mm
+        dia = 1.5mm
         drill = 0.6mm
         body-length = 19.2mm
         body-height = 5mm

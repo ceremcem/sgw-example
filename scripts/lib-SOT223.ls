@@ -26,6 +26,7 @@ add-class class SOT223 extends DoublePinArray
 
 
 add-class class SOT23 extends DoublePinArray
+    @rev_SOT23 = 1
     (data, overrides) ->
         pad =
             width: 0.9mm
@@ -46,10 +47,8 @@ add-class class SOT23 extends DoublePinArray
                     count: 2
                     interval: 1.9mm
             border:
-                width: 1.43mm
+                width: 0.8mm #1.43mm
                 height: 3mm
-
-#new SOT23
 
 
 add-class class NPN extends SOT23
@@ -61,8 +60,6 @@ add-class class NPN extends SOT23
                 2: 'e'
                 3: 'c'
         super data, (defaults `aea.merge` overrides)
-
-#new NPN
 
 add-class class PNP extends NPN
 
@@ -113,7 +110,7 @@ add-class class DPAK extends DoublePinArray
                 width: 6.3mm + 3.2mm + 1.1mm + 1mm
                 height: 6.8mm
 
-#new DPAK
+
 
 add-class class IRFR024 extends DPAK
     (data, overrides) ->
@@ -123,5 +120,10 @@ add-class class IRFR024 extends DPAK
                 2: "s"
                 3: "d"
 
+# Testing
+# -------
+#new DPAK
+#new SOT23
+#new NPN
 #new IRFR024
 

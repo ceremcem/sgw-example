@@ -1,3 +1,16 @@
+/* data format:
+
+circular pad:
+    dia: 1.5mm
+    drill: 0.6mm
+
+rectangular pad:
+    width: 3.1mm
+    height: 1.5mm
+
+*/
+
+
 add-class class PinArray extends Footprint
     create: (data) ->
         #console.log "Creating from scratch PinArray"
@@ -42,4 +55,11 @@ add-class class PinArray extends Footprint
             # useful for female headers
             @mirror!
 
-        @make-border data
+        border = if data.border is "default"
+            width: @mbounds.width + 0.4mm
+            height: @mbounds.height + 0.4mm
+        else
+            data.border
+
+
+        @make-border {border}

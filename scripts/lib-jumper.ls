@@ -6,6 +6,14 @@
 #
 # This script will also be treated as a library file.
 # --------------------------------------------------
+add-class class Jumper_1206 extends SMD1206
+    (data, overrides) ->
+        super data, overrides `based-on` do
+            allow-duplicate-labels: yes
+            labels:
+                1: 1
+                2: 1
+
 add-class class TestBoundary extends PinArray
     (data, overrides) ->
         super data, overrides `based-on` do

@@ -6,9 +6,10 @@ smd1206 =
     c: 2mm
 
 {a, b, c} = smd1206
+margin = 0.4mm
 
 add-class class SMD1206 extends PinArray
-    @rev_SMD1206 = 1
+    @rev_SMD1206 = 2
     (data, overrides) ->
         super data, overrides `based-on` do
             name: 'r_'
@@ -19,8 +20,8 @@ add-class class SMD1206 extends PinArray
                 count: 2
                 interval: c + b
             border:
-                width: c
-                height: a
+                width: c + 2 * b + margin
+                height: a + margin
 
 #new SMD1206
 
@@ -50,6 +51,7 @@ add-class class DO214AC extends SMD1206_pol
             cols:
                 count: 2
                 interval: 5.28mm - 1.52mm
+            border: "default"
 
 #new DO214AC
 
@@ -110,8 +112,8 @@ add-class class Sense1206 extends Footprint
 
         @make-border do
             border:
-                width: (c + 2 * b) + 0.1
-                height: a + 0.1
+                width: (c + 2 * b) + margin
+                height: a + margin
 
 
 #new Sense1206

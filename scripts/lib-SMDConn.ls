@@ -1,6 +1,7 @@
 #! requires PinArray
 
 add-class class SMDConn_3pin extends PinArray
+    @rev_SMDConn_3pin = 1
     (data, overrides) ->
         super data, overrides `based-on` do
             pad:
@@ -9,9 +10,8 @@ add-class class SMDConn_3pin extends PinArray
             cols:
                 count: 3
                 interval: 2.54mm
-            border:
-                width: 7mm
-                height: 3.8mm
+            border: "default"
+
 
 add-class class SMDConn_4pin extends SMDConn_3pin
     (data, overrides) ->
@@ -30,3 +30,10 @@ add-class class SMDConn_2pin extends SMDConn_3pin
         super data, overrides `based-on` do
             cols:
                 count: 2
+
+if __main__
+    new SMDConn_5pin
+
+
+
+
